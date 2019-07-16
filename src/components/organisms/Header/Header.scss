@@ -1,0 +1,8 @@
+@import '../../../assets/variables/variables.scss';
+
+.header {
+    display: flex;
+    justify-content: center;
+    background-color: $yellow;
+    padding: 8px 30px;
+}
