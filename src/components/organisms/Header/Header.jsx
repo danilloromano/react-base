@@ -6,7 +6,7 @@ export default class Header extends Component {
         return (
             <header className="header">
                 <div className="header__logo">
-                    <img src="../../assets/images/Logo_ML.png" />
+                    <img src="../src/assets/images/Logo_ML.png" />
                 </div>
                 <div className="header__search-imput">
                     
