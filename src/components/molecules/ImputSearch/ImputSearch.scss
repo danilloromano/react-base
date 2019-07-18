@@ -1,0 +1,24 @@
+@import '../../../assets/variables/variables.scss';
+
+.imput-search__wrapper { 
+    display: flex;
+    flex-wrap: nowrap; 
+}
+
+.imput-search {
+    width: 100%;
+    height: 32px;
+    font-size: 18px;
+    padding: 0 10px;
+    border: none;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.imput-search__button {
+    padding: 0 10px;
+    border: none;
+    background-color: $light-gray;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}

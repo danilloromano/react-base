@@ -4,5 +4,20 @@
     display: flex;
     justify-content: center;
     background-color: $yellow;
-    padding: 8px 30px;
+    padding: 5px 0;
+}
+
+.header__wrapper {
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    align-items: center;
+}
+
+.header__logo {
+    margin-right: 16px;
+}
+
+.header__imput {
+    flex: 1;
 }
