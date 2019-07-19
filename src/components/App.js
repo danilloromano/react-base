@@ -1,18 +1,18 @@
-import React, { Component, Fragment } from "react";
-import Header from "./organisms/Header/Header.jsx"
-import "./App.scss";
-import "../assets/variables/reset.scss";
+import React, { Component } from "react";
+import Home from "../components/pages/Home/Home.jsx"
 
-export default class App extends Component {
+import "./App.scss";
+import "../assets/variables/reset.scss"
+
+ class App extends Component {
 
     render() {
         return (
-            <Fragment>
-                <Header />
-                <div className="container">
-
-                </div>
-            </Fragment>
+            <div>
+                <Home />
+            </div>
         )
     }
 }
+
+export default App;
