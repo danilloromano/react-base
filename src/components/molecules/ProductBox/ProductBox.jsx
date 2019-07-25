@@ -9,8 +9,8 @@ import "./ProductBox.scss";
 
     return (
         <div className="product-box__container">
-            <div className="product-box__image">
-                <img src={image} alt="product image"/>
+            <div className="product-box__image-container">
+                <img className="product-box__image" src={image} alt="product image"/>
             </div>
             <div className="product-box__descriptions">
                 <h2 className="product-box__price">{price}</h2>

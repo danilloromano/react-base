@@ -1,11 +1,9 @@
 import React, { Component, Fragment } from "react";
 import Header from "../../organisms/Header/Header.jsx";
 import ProductBox from '../../molecules/ProductBox/ProductBox.jsx'
-import { getProductsByName } from "../../../infra/Calls.js"
+import { getProductsByName, getInitialSearc } from "../../../infra/Calls.js"
 
 import "../Home/Home.scss";
-// import "../../../assets/variables/reset.scss";
-
 
 class Home extends Component {
     constructor(props) {
@@ -18,21 +16,29 @@ class Home extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
-        this.handleList = this.handleList.bind(this);
+    }
+
+    componentDidMount() {
+        this.handleInitialSearch()
     }
 
     handleChange(event) {
         this.setState({ searchText: event.target.value });
     }
 
+    handleInitialSearch() {
+        getInitialSearc().then(res => {
+            const products = res.data.results;
+            this.setState({ products });
+        })
+        .catch(error => console.log(error))
+    }
 
     handleSearch() {
         getProductsByName(this.state.searchText)
             .then(res => {
                 const products = res.data.results;
                 this.setState({ products });
-                console.log('_____________________',this.state.products)
-
             })
             .catch(error => console.log(error))
     }
@@ -62,7 +68,7 @@ class Home extends Component {
                 <Header
                     handleSearch={this.handleSearch}
                     handleChange={this.handleChange} />
-                    <div>
+                    <div className="container">
                         {this.handleList()}
                     </div>
             </Fragment>
