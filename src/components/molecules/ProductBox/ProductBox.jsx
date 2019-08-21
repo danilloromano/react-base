@@ -5,10 +5,10 @@ import "./ProductBox.scss";
 
  const ProductBox = (props) => {
 
-    const {description, price, image, location} = props;
+    const {description, price, image, location, id} = props;
 
     return (
-        <div className="product-box__container">
+        <div className="product-box__container" key={id}>
             <div className="product-box__image-container">
                 <img className="product-box__image" src={image} alt="product image"/>
             </div>
@@ -22,6 +22,7 @@ import "./ProductBox.scss";
 }
 
 ProductBox.propTypes = {
+    id: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,

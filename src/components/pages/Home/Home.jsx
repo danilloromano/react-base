@@ -50,13 +50,14 @@ class Home extends Component {
             const {title, price, thumbnail, address:{state_name}} = item;
 
             return (
-                <div className="container__product" key={item.id}> 
-                    <ProductBox 
+                <Fragment>
+                    <ProductBox
+                        id={item.id}
                         description={title}
                         price={price} 
                         image={thumbnail} 
                         location={state_name} />
-                </div>
+                </Fragment>
             )
         })
         return boxes;
