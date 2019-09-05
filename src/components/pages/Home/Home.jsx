@@ -1,63 +1,27 @@
 import React, { Component, Fragment } from "react";
 import Header from "../../organisms/Header/Header.jsx";
+import PropTypes from "prop-types";
 import ProductBox from '../../molecules/ProductBox/ProductBox.jsx'
-import { getProductsByName, getInitialSearc } from "../../../infra/Calls.js"
-
 import "../Home/Home.scss";
 
 class Home extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            products: [],
-            searchText: '',
-        };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSearch = this.handleSearch.bind(this);
-    }
-
-    componentDidMount() {
-        this.handleInitialSearch()
-    }
-
-    handleChange(event) {
-        this.setState({ searchText: event.target.value });
-    }
-
-    handleInitialSearch() {
-        getInitialSearc().then(res => {
-            const products = res.data.results;
-            this.setState({ products });
-        })
-        .catch(error => console.log(error))
-    }
-
-    handleSearch() {
-        getProductsByName(this.state.searchText)
-            .then(res => {
-                const products = res.data.results;
-                this.setState({ products });
-            })
-            .catch(error => console.log(error))
+        console.log('proppppssss home', props);
     }
 
     handleList() {
-        this.state.products.length ? this.state.products : [];
 
-        let boxes =  this.state.products.map( item => {
-            const {title, price, thumbnail, address:{state_name}} = item;
+        let boxes =  this.props.products && this.props.products.map( item => {
+            const {id, title, price, thumbnail, address:{state_name}} = item;
 
             return (
-                <Fragment>
-                    <ProductBox
-                        id={item.id}
+                    <ProductBox  key={id}
+                        id={id}
                         description={title}
                         price={price} 
                         image={thumbnail} 
                         location={state_name} />
-                </Fragment>
             )
         })
         return boxes;
@@ -67,14 +31,22 @@ class Home extends Component {
         return (
             <Fragment>
                 <Header
-                    handleSearch={this.handleSearch}
-                    handleChange={this.handleChange} />
+                    handleSearch={this.props.handleSearch}
+                    handleChange={this.props.handleChange} />
                     <div className="container">
                         {this.handleList()}
                     </div>
             </Fragment>
         )
     }
+}
+
+Home.propTypes = {
+    products: PropTypes.array.isRequired,
+    searchText: PropTypes.string.isRequired,
+    handleInitialSearch: PropTypes.func.isRequired,
+    handleSearch: PropTypes.func.isRequired,
+    handleChange: PropTypes.func.isRequired,
 }
 
 export default Home;

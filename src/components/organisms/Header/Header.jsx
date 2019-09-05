@@ -7,6 +7,7 @@ class Header extends Component {
     constructor(props) {
         super(props)
     }
+    
     render() {
         const { handleChange, handleSearch } = this.props;
         return (
