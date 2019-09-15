@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const baseUrl = 'https://api.mercadolibre.com/sites/MLA/search?q=';
 const idSearcUrl = 'https://api.mercadolibre.com/items/';
-const limit = 4;
+const limit = 10;
 
 export const getProductsByName = (productName) => {
     return axios.get(`${baseUrl}${productName}&limit=${limit}`);
@@ -13,7 +13,7 @@ export const getInitialSearch = () => {
 }
 
 export const getProductById = (id) => {
-    return axios.get(`${idSearcUrl}:${id}`);
+    return axios.get(`${idSearcUrl}${id}`);
 }
 
 export const getDetailProductById = (id) => {

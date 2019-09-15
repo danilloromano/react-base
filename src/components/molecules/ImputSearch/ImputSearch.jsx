@@ -17,8 +17,7 @@ class ImputSearch extends Component {
                     type = {type}
                     placeholder = {placeholder}
                     className = "imput-search"
-                    onChange = {handleChange}
-                    />
+                    onChange = {handleChange}/>
                 <button className="imput-search__button" onClick = {handleSearch}>
                     <img className="imput-search__icon" src="../src/assets/images/ic_Search.png" />
                 </button>

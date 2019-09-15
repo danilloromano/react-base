@@ -1,8 +1,13 @@
-import React, { Component } from "react";
-import Home from "../components/pages/Home/Home.jsx"
-import { getProductsByName, getInitialSearch } from "../infra/Calls"
+import React, { Component, Fragment  } from "react";
+import Header from "./organisms/Header/Header.jsx";
+import Home from "../components/pages/Home/Home.jsx";
+import ProductPage from "../components/pages/Product/Product.jsx";
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import { getProductsByName, getInitialSearch, getProductById } from "../infra/Calls";
+
 import "./App.scss";
-import "../assets/variables/reset.scss"
+import "../assets/variables/reset.scss";
+import { match } from "minimatch";
 
  class App extends Component {
 
@@ -11,12 +16,15 @@ import "../assets/variables/reset.scss"
         this.state = {
             products: [],
             product: [],
+            params: null,
             searchText: '',
+            loading: false
         };
-
         this.handleChange = this.handleChange.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
         this.handleInitialSearch = this.handleInitialSearch.bind(this);
+        this.handleSearchById = this.handleSearchById.bind(this);
+
     }
 
     componentDidMount() {
@@ -28,10 +36,9 @@ import "../assets/variables/reset.scss"
     }
 
     handleInitialSearch() {
+        this.setState({ loading: true });
         getInitialSearch().then(res => {
-            const products = res.data.results;
-            this.setState({ products });
-            console.log(`products`, products)
+            this.setState({ products: res.data.results ? res.data.results : [], loading: false });   
         })
         .catch(error => console.log(error))
     }
@@ -45,17 +52,39 @@ import "../assets/variables/reset.scss"
             .catch(error => console.log(error))
     }
 
+    handleSearchById(id) {
+        getProductById(id)
+            .then(res => {
+                const product = res.data.results;
+                this.setState({ product });
+            })
+            .catch(error => console.log(error))
+    }
+
     render() {
         return (
-            <div>
-                <Home 
-                    handleChange={this.handleChange}
-                    handleInitialSearch={this.handleInitialSearch}
+            <Router>
+                <Header
                     handleSearch={this.handleSearch}
-                    products={this.state.products}
-                    searchText={this.state.searchText}
-                />
-            </div>
+                    handleChange={this.handleChange}/>
+                <div className="container">
+                    <Route path={'/'} render={() => (
+                        <Fragment>
+                            <Home 
+                                products={this.state.products}
+                                handleSearchById={this.handleSearchById}/>
+                        </Fragment>
+                    )}/>
+                    <Route path={'/product/:id'} render={() => (
+                        <Fragment>  
+                            <ProductPage 
+                                product={this.state.product}
+                                handleSearch={this.handleSearchById}
+                            />
+                        </Fragment>
+                    )}/>  
+                </div>
+            </Router>
         )
     }
 }
