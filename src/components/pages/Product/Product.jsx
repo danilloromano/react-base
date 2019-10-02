@@ -1,26 +1,43 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import "../Product/Product.scss";
+import { getProductById } from "../../../infra/Calls";
 
-class ProductPage extends Component {
-    constructor(props) {
-        super(props);
-        console.log(props)
+
+export class ProductPage extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      product: null
     }
+  }
 
-    componentDidMount() {
-        const { match: { params }, handleSearch } = this.props;
-        handleSearch(params);
-    }
+  handleSearchById(id) {
+    getProductById(id)
+        .then(res => {
+            const product = res.data;
+            this.setState({ product });
+        })
+        .catch(error => console.log(error))
+  }
 
-    render() {
-        const { product } = this.props;
+  componentDidMount () {
+    const { id } = this.props.match.params;
+    this.handleSearchById(id);
+  }
 
-        return (
-            <Fragment>
-                <p>pagina de produto {product &&product.id}</p>
-            </Fragment>
-        )
-    }
-}
+  render() {
+    const { id } = this.props.match.params;
+
+    return (
+      <>
+        <p>
+            <strong>Match Props: {id} </strong>
+        </p>
+      </>
+    );
+  }
+};
 
 export default ProductPage;

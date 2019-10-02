@@ -23,8 +23,6 @@ import { match } from "minimatch";
         this.handleChange = this.handleChange.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
         this.handleInitialSearch = this.handleInitialSearch.bind(this);
-        this.handleSearchById = this.handleSearchById.bind(this);
-
     }
 
     componentDidMount() {
@@ -52,15 +50,6 @@ import { match } from "minimatch";
             .catch(error => console.log(error))
     }
 
-    handleSearchById(id) {
-        getProductById(id)
-            .then(res => {
-                const product = res.data.results;
-                this.setState({ product });
-            })
-            .catch(error => console.log(error))
-    }
-
     render() {
         return (
             <Router>
@@ -68,21 +57,12 @@ import { match } from "minimatch";
                     handleSearch={this.handleSearch}
                     handleChange={this.handleChange}/>
                 <div className="container">
-                    <Route path={'/'} render={() => (
-                        <Fragment>
-                            <Home 
-                                products={this.state.products}
-                                handleSearchById={this.handleSearchById}/>
-                        </Fragment>
-                    )}/>
-                    <Route path={'/product/:id'} render={() => (
-                        <Fragment>  
-                            <ProductPage 
-                                product={this.state.product}
-                                handleSearch={this.handleSearchById}
-                            />
-                        </Fragment>
-                    )}/>  
+                    <Route exact path={'/'} component={() => 
+                        <Home 
+                            products={this.state.products}
+                        />
+                    }/>
+                    <Route exact path={'/:id'} component={ProductPage}/>
                 </div>
             </Router>
         )

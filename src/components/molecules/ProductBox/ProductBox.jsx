@@ -8,8 +8,7 @@ import "./ProductBox.scss";
     const { description, price, image, location, id} = props;
 
     return (
-        <div className="product-box__container" key={id}>
-            <Link to={`/product/${id}`} />
+            <Link to={`/${id}`} className="product-box__container" key={id}>
                 <div className="product-box__image-container">
                     <img className="product-box__image" src={image} alt="product image"/>
                 </div>
@@ -18,7 +17,7 @@ import "./ProductBox.scss";
                     <p className="product-box__title">{description}</p>
                 </div>
                 <div className="product-box__location">{location}</div>
-        </div>
+            </Link>
     )
 }
 
