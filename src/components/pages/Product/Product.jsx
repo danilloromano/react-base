@@ -32,7 +32,7 @@ export class ProductPage extends Component {
     return (
       <>
         <p>
-            <strong>Match Props: {id} </strong>
+          <strong>Match Props: {id} </strong>
         </p>
       </>
     );

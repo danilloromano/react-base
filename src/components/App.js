@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Header from "./organisms/Header/Header.jsx";
 import Home from "../components/pages/Home/Home.jsx";
 import ProductPage from "../components/pages/Product/Product.jsx";
-import {BrowserRouter as Router, Route} from 'react-router-dom';
-import { getProductsByName, getInitialSearch, getProductById } from "../infra/Calls";
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import { getProductsByName, getInitialSearch } from "../infra/Calls";
 
 import "./App.scss";
 import "../assets/variables/reset.scss";
@@ -14,6 +14,7 @@ import "../assets/variables/reset.scss";
         super(props);
         this.state = {
             products: [],
+            isRedirected: false,
             searchText: '',
             loading: false
         };
@@ -23,6 +24,7 @@ import "../assets/variables/reset.scss";
     }
 
     componentDidMount() {
+        this.setState({location: window.location.pathname});
         this.handleInitialSearch();
     }
 
@@ -38,7 +40,14 @@ import "../assets/variables/reset.scss";
         .catch(error => console.log(error))
     }
 
+    toggleRedirectState() {
+        if(window.location.pathname !== '/') {
+          return this.setState(prevState => ({ isRedirected: !prevState.isRedirected }));
+        }
+    }
+
     handleSearch() {
+        this.toggleRedirectState();
         getProductsByName(this.state.searchText)
             .then(res => {
                 const products = res.data.results;
@@ -54,12 +63,9 @@ import "../assets/variables/reset.scss";
                     handleSearch={this.handleSearch}
                     handleChange={this.handleChange}/>
                 <div className="container">
-                    <Route exact path={'/'} component={() => 
-                        <Home 
-                            products={this.state.products}
-                        />
-                    }/>
+                    <Route exact path={'/'} component={() => <Home products={this.state.products}/>}/>
                     <Route exact path={'/:id'} component={ProductPage}/>
+                    {this.state.isRedirected && <Redirect to="/" />}
                 </div>
             </Router>
         )
