@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import ProductBox from '../../molecules/ProductBox/ProductBox.jsx'
 import "../Home/Home.scss";
@@ -28,9 +28,9 @@ class Home extends Component {
 
     render() {
         return (
-            <Fragment>
+            <>
                 {this.handleList()}
-            </Fragment>
+            </>
         )
     }
 }

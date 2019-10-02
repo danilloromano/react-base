@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "../Product/Product.scss";
 import { getProductById } from "../../../infra/Calls";
 
-
 export class ProductPage extends Component {
 
   constructor(props) {

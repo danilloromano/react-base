@@ -1,4 +1,4 @@
-import React, { Component, Fragment  } from "react";
+import React, { Component } from "react";
 import Header from "./organisms/Header/Header.jsx";
 import Home from "../components/pages/Home/Home.jsx";
 import ProductPage from "../components/pages/Product/Product.jsx";
@@ -7,7 +7,6 @@ import { getProductsByName, getInitialSearch, getProductById } from "../infra/Ca
 
 import "./App.scss";
 import "../assets/variables/reset.scss";
-import { match } from "minimatch";
 
  class App extends Component {
 
@@ -15,8 +14,6 @@ import { match } from "minimatch";
         super(props);
         this.state = {
             products: [],
-            product: [],
-            params: null,
             searchText: '',
             loading: false
         };
