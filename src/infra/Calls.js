@@ -9,7 +9,7 @@ export const getProductsByName = (productName) => {
 }
 
 export const getInitialSearch = () => {
-    return axios.get(`${baseUrl}skate&limit=${limit}`);
+    return axios.get(`${baseUrl}iphone 8&limit=${limit}`);
 }
 
 export const getProductById = (id) => {
@@ -17,5 +17,5 @@ export const getProductById = (id) => {
 }
 
 export const getDetailProductById = (id) => {
-    return axios.get(`${idSearcUrl}:${id}/description`);
+    return axios.get(`${idSearcUrl}${id}/description`);
 }
