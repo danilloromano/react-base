@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyComponent should render correctly with props 1`] = `
+<div
+  className="imput-search__wrapper"
+>
+  <input
+    className="imput-search"
+    onChange={[MockFunction]}
+    placeholder=""
+    type=""
+  />
+  <button
+    className="imput-search__button"
+    onClick={[MockFunction]}
+  >
+    <img
+      className="imput-search__icon"
+      src="../src/assets/images/ic_Search.png"
+    />
+  </button>
+</div>
+`;
