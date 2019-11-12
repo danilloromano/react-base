@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Product test should render correctly with state 1`] = `
+<Fragment>
+  <div
+    className="product"
+  />
+</Fragment>
+`;

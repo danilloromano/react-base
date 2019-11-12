@@ -27,7 +27,6 @@ export class ProductPage extends Component {
     getDetailProductById(id).then(res => {
       const descriptions = res.data;
       this.setState({ descriptions });
-      console.log(descriptions)
     })
       .catch(error => console.log(error))
   }
