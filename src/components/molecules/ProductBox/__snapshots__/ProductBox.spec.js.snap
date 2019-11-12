@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductBox test should render correctly with props 1`] = `
+<Link
+  className="product-box__container"
+  key="MLA820795723"
+  to="/MLA820795723"
+>
+  <div
+    className="product-box__image-container"
+  >
+    <img
+      alt="product image"
+      className="product-box__image"
+      src="http://mla-s2-p.mlstatic.com/951232-MLA31003080341_062019-I.jpg"
+    />
+  </div>
+  <div
+    className="product-box__descriptions"
+  >
+    <h2
+      className="product-box__price"
+    >
+      129999
+    </h2>
+    <p
+      className="product-box__title"
+    >
+      Apple iPhone 8 Plus 256 Gb Gris Espacial
+    </p>
+  </div>
+  <div
+    className="product-box__location"
+  >
+    Capital Federal
+  </div>
+</Link>
+`;
