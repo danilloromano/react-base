@@ -19,3 +19,4 @@ export const getProductById = (id) => {
 export const getDetailProductById = (id) => {
     return axios.get(`${idSearcUrl}${id}/description`);
 }
+
